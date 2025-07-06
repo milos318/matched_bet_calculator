@@ -6,12 +6,21 @@ def get_positive_float(prompt):
     while True:
         try:
             value = float(input(prompt))
-            if value != 0:
-                return value
-            elif value == 0:
+            if value >= 0:
                 return value
             else:
                 print("❌ Value must be zero or greater.")
+        except ValueError:
+            print("❌ Invalid input. Please enter a number.")
+
+def get_float_odds(prompt):
+    while True:
+        try:
+            value = float(input(prompt))
+            if value > 0:
+                return value
+            else:
+                print("❌ Value must greater than zero.")
         except ValueError:
             print("❌ Invalid input. Please enter a number.")
 
@@ -88,8 +97,8 @@ def matched_bet_balanced_loss():
 
     # Inputs
     back_stake = get_positive_float("Enter back stake (£): ")
-    back_odds = get_positive_float("Enter back odds: ")
-    lay_odds = get_positive_float("Enter lay odds: ")
+    back_odds = get_float_odds("Enter back odds: ")
+    lay_odds = get_float_odds("Enter lay odds: ")
     back_comm = get_positive_float("Enter bookmaker commission (%) (usually 0): ") / 100
     lay_comm = get_positive_float("Enter exchange commission (%) (e.g. 5): ") / 100
 
