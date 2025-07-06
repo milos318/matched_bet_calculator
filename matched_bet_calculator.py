@@ -1,3 +1,7 @@
+#Simple calculator for calculating lay stake by entering values for back stake, back and lay odds.
+#Please use only numerical values in valid format for inputs (e.g. 5 or 2.5), 
+#commssion values also enter as number (without %).
+
 def get_positive_float(prompt):
     while True:
         try:
@@ -28,12 +32,11 @@ def find_balanced_lay_stake(back_stake, back_odds, lay_odds, back_comm, lay_comm
     low = 0
     high = back_stake * 5  # arbitrarily large
 
-    tolerance = 0.01
+    tolerance = 0.001
     while high - low > tolerance:
         mid = (low + high) / 2
         net_back_win, net_lay_win, _ = calculate_net_profits(back_stake, back_odds, lay_odds, back_comm, lay_comm, mid)
         diff = net_back_win - net_lay_win
-
         if abs(diff) < tolerance:
             return mid  # balanced!
         elif diff > 0:
@@ -42,7 +45,6 @@ def find_balanced_lay_stake(back_stake, back_odds, lay_odds, back_comm, lay_comm
         else:
             # lay win is more profitable → decrease lay stake
             high = mid
-
     return (low + high) / 2
 
 
