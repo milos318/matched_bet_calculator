@@ -28,7 +28,7 @@ def find_balanced_lay_stake(back_stake, back_odds, lay_odds, back_comm, lay_comm
     low = 0
     high = back_stake * 5  # arbitrarily large
 
-    tolerance = 0.0001
+    tolerance = 0.01
     while high - low > tolerance:
         mid = (low + high) / 2
         net_back_win, net_lay_win, _ = calculate_net_profits(back_stake, back_odds, lay_odds, back_comm, lay_comm, mid)
